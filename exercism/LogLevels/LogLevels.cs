@@ -14,10 +14,11 @@
 
         int cantidad = final - inicio;
         string palabraExtraida = logLine.Substring(inicio, cantidad).ToLower();
+        return palabraExtraida;
     }
 
     public static string Reformat(string logLine)
     {
-        return $"{Message(LogLine)} {LogLevel(logLine)}";
+        return $"{Message(logLine)} {LogLevel(logLine)}";
     }
 }

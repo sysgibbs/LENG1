@@ -36,3 +36,5 @@
         return (int)(ProductionRatePerHour(speed) / 60);
     }
 }
+
+
