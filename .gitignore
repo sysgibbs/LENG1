@@ -1,0 +1,13 @@
+# 1. Ignorar todo por defecto
+*
+
+# 2. Permitir que Git lea el contenido de las carpetas (necesario para que encuentre los archivos dentro)
+!*/
+
+# 3. Permitir TODOS los archivos .cs en cualquier carpeta y subcarpeta
+!*.cs
+
+# 4. Excepciones específicas que también quieres subir
+!README.md
+!.gitignore
+!/conceptos/conceptos.pdf
