@@ -9,5 +9,4 @@
 
 # 4. Excepciones específicas que también quieres subir
 !README.md
-!.gitignore
-!/conceptos/conceptos.pdf
+
