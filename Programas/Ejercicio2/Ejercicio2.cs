@@ -4,3 +4,27 @@
 Nombres
 Calificaciones
 */
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+
+namespace EjercicioDos
+{
+
+    class EjercicioDos
+    {
+        public static void Main(string[] args)
+        {
+
+            string name;
+
+            Console.Write("Inserte su nombre: ");
+
+            name = Console.ReadLine();
+
+            Console.WriteLine($"Your name is {name.TO()}.");
+
+            Console.ReadKey();
+        }
+    }
+}
