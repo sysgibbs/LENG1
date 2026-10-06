@@ -1,4 +1,4 @@
-﻿/*
+/*
 !Realice un programa que solicite de dos valores al usuario y luego imprima por pantalla los
 
 resultados de las operaciones:
@@ -45,7 +45,7 @@ namespace PrimerEjercicio
             {
                 if (num2 != 0)
                 {
-                    double division = (double)num1 / num2;
+                    int division = num1 / num2;
                     Console.WriteLine($"La division de {num1} / {num2} = {division}");
                 }
                 else
