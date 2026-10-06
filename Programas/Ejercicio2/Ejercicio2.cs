@@ -1,6 +1,9 @@
 ﻿/*
 !El colegio “Dios es bueno” necesita obtener la lista de las calificaciones de los estudiantes.
+Para esto deberá escribir un programa c# que obtenga los nombres de los estudiantes y las
+calificaciones
 */
+
 using System;
 using System.Collections.Generic;
 
@@ -31,6 +34,13 @@ namespace Programa
                 {
                     Console.Write($"Ingrese la nota {i + 1} (0-100): ");
                     notas[i] = int.Parse(Console.ReadLine());
+
+                    while (notas[i] < 0 || notas[i] > 100)
+                    {
+                        Console.WriteLine("Error nota incorrecta. Intente nuevamente.");
+                        notas[i] = int.Parse(Console.ReadLine());
+                    }
+
                     suma += notas[i];
                 }
 
