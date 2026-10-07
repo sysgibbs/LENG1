@@ -1,0 +1,233 @@
+{
+  // =========================================================
+  // UI Y ESTÉTICA MINIMALISTA (Tus preferencias visuales)
+  // =========================================================
+  "workbench.colorTheme": "Code Blue",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "fluent-icons",
+  
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "bottom",
+  "workbench.statusBar.visible": false,
+  "workbench.editor.showTabs": "none",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.renderWhitespace": "none",
+  "editor.renderControlCharacters": false,
+  "editor.renderLineHighlight": "line",
+  "editor.wordWrap": "off",
+  "editor.stickyScroll.enabled": true,
+
+  "window.menuBarVisibility": "classic",
+  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
+
+  // =========================================================
+  // RENDIMIENTO Y BAJO CONSUMO (CPU / RAM / Batería)
+  // =========================================================
+  "workbench.tips.enabled": false,
+  "workbench.enableExperiments": false,
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "manual",
+  "extensions.autoUpdate": false,
+  "extensions.ignoreRecommendations": true,
+
+  // Desactivar animaciones y suavizados (ahorra GPU/CPU rendering)
+  "editor.smoothScrolling": false,
+  "editor.cursorSmoothCaretAnimation": "off",
+  "workbench.list.smoothScrolling": false,
+  "terminal.integrated.smoothScrolling": false,
+  "editor.hover.delay": 500, // Evita que los popups salten constantemente
+  "editor.codeLens": false, // Apaga texto flotante sobre funciones (ahorra indexación)
+  
+  "editor.largeFileOptimizations": true,
+  "editor.maxTokenizationLineLength": 20000,
+
+  // Git en modo manual (Evita llamadas de red y CPU en segundo plano)
+  "git.autofetch": false,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": false,
+  "git.decorations.enabled": false, // Apagar colores de git en el árbol si hay lag
+
+  // =========================================================
+  // EXCLUSIONES DE BÚSQUEDA Y VIGILANCIA (Crucial para RAM)
+  // =========================================================
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "**/venv": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.cache": true,
+    "**/bin": true,
+    "**/obj": true
+  },
+  "files.watcherExclude": {
+    // Evita que VS Code monitoree cambios en estas carpetas pesadas
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/venv/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/bin/**": true,
+    "**/obj/**": true,
+    "**/__pycache__/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.venv": true,
+    "**/venv": true,
+    "**/__pycache__": true,
+    "**/.git": true,
+    "**/bin": true,
+    "**/obj": true
+  },
+  "search.useIgnoreFiles": true,
+  "search.followSymlinks": false,
+
+  // =========================================================
+  // EDITOR Y FUENTES
+  // =========================================================
+  "editor.fontFamily": "CommitMono, Maple Mono, Cascadia Mono, Consolas, monospace",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 14,
+  "editor.fontWeight": "400",
+  "editor.lineHeight": 23,
+  "editor.letterSpacing": 0.6,
+  "editor.tabSize": 4,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "phase",
+  
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+
+  // =========================================================
+  // TERMINAL
+  // =========================================================
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontFamily": "Monocraft",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.scrollback": 5000, // Reducido de 10000 para ahorrar RAM
+  "terminal.integrated.enablePersistentSessions": false,
+  "accessibility.signals.terminalBell": { "sound": "off" },
+
+  // =========================================================
+  // ANTI-IA Y AUTOCOMPLETADO CLÁSICO
+  // =========================================================
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.enable": { "*": false },
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.quickSuggestionsDelay": 300,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.suggest.preview": false,
+  "editor.wordBasedSuggestions": "off",
+
+  // =========================================================
+  // LENGUAJES Y FORMATTERS
+  // =========================================================
+  // C#
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": true
+  },
+  "omnisharp.useModernNet": true,
+  "dotnet.defaultSolution": "disable",
+
+  // Python
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": false,
+  "python.createEnvironment.trigger": "off",
+
+  // C++
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.intelliSenseEngine": "disabled", // Excelente para rendimiento en laptops base
+
+  // Go
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true
+  },
+  "go.toolsManagement.autoUpdate": false,
+  "go.useLanguageServer": true,
+
+  // Web
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+
+  // =========================================================
+  // COLORES PERSONALIZADOS (Tu tema estilo Gruvbox)
+  // =========================================================
+  "editor.tokenColorCustomizations": {
+    "[Code Blue], [Kanagawa Wave]": {
+      "textMateRules": [
+        { "scope": ["variable", "constant.other"], "settings": { "foreground": "#fabd2f" } },
+        { "scope": ["keyword", "storage.type", "storage.modifier"], "settings": { "foreground": "#fb4934", "fontStyle": "" } },
+        { "scope": ["entity.name.function", "support.function"], "settings": { "foreground": "#3476fb" } },
+        { "scope": ["string", "punctuation.definition.string"], "settings": { "foreground": "#b8bb26" } },
+        { "scope": ["constant.numeric", "constant.language"], "settings": { "foreground": "#d3869b" } },
+        { "scope": ["entity.name.type", "entity.name.class", "support.class"], "settings": { "foreground": "#fabd2f" } },
+        { "scope": "comment", "settings": { "foreground": "#928374", "fontStyle": "italic" } },
+        { "scope": ["punctuation", "meta.brace"], "settings": { "foreground": "#d5c4a1" } }
+      ]
+    }
+  },
+  "workbench.colorCustomizations": {
+    "[Code Blue], [Kanagawa Wave]": {
+      "editor.background": "#282828",
+      "sideBar.background": "#242424",
+      "activityBar.background": "#242424",
+      "panel.background": "#303030",
+      "terminal.background": "#282828",
+      "terminal.foreground": "#ebdbb2",
+      "terminal.ansiBlack": "#1d1d1d",
+      "terminal.ansiBlue": "#458588",
+      "terminal.ansiCyan": "#689d6a",
+      "terminal.ansiGreen": "#98971a",
+      "terminal.ansiMagenta": "#b16286",
+      "terminal.ansiRed": "#cc241d",
+      "terminal.ansiWhite": "#a89984",
+      "terminal.ansiYellow": "#d79921",
+      "editor.selectionBackground": "#504945",
+      "editorCursor.foreground": "#fabd2f",
+      "sideBarTitle.foreground": "#ebdbb2",
+      "list.activeSelectionBackground": "#504945",
+      "list.activeSelectionForeground": "#fabd2f",
+      "button.background": "#458588"
+    }
+  }
+}
