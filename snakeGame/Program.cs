@@ -56,7 +56,7 @@ namespace JuegoSnake
         {
             Console.ForegroundColor = ColorLetra;
 
-            // Marco superior e inferior
+
             for (int i = LimiteSuperior.X; i <= LimiteInferior.X; i++)
             {
                 Console.SetCursorPosition(i, LimiteSuperior.Y);
