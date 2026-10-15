@@ -1,16 +1,17 @@
-﻿namespace MyFormulario;
+﻿namespace VideoFormulario;
 
 partial class Form1
 {
-    /// <summary>
-    ///  Required designer variable.
-    /// </summary>
     private System.ComponentModel.IContainer components = null;
 
-    /// <summary>
-    ///  Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    private Label lblNombre;
+    private Label lblEdad;
+    private TextBox txtNombre;
+    private TextBox txtEdad;
+    private Button btnGuardar;
+    private Button btnLimpiar;
+    private DataGridView grilla;
+
     protected override void Dispose(bool disposing)
     {
         if (disposing && (components != null))
@@ -20,19 +21,54 @@ partial class Form1
         base.Dispose(disposing);
     }
 
-    #region Windows Form Designer generated code
-
-    /// <summary>
-    ///  Required method for Designer support - do not modify
-    ///  the contents of this method with the code editor.
-    /// </summary>
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
-        Text = "Form1";
-    }
 
-    #endregion
+        lblNombre = new Label();
+        lblNombre.Text = "Nombre";
+        lblNombre.Location = new Point(20, 20);
+        lblNombre.Size = new Size(60, 23);
+
+        txtNombre = new TextBox();
+        txtNombre.Location = new Point(100, 20);
+        txtNombre.Size = new Size(200, 23);
+
+        lblEdad = new Label();
+        lblEdad.Text = "Edad";
+        lblEdad.Location = new Point(20, 60);
+        lblEdad.Size = new Size(60, 23);
+
+        txtEdad = new TextBox();
+        txtEdad.Location = new Point(100, 60);
+        txtEdad.Size = new Size(200, 23);
+
+        btnGuardar = new Button();
+        btnGuardar.Text = "Guardar";
+        btnGuardar.Location = new Point(20, 100);
+        btnGuardar.Size = new Size(100, 30);
+        btnGuardar.Click += btnGuardar_Click;
+
+        btnLimpiar = new Button();
+        btnLimpiar.Text = "Limpiar";
+        btnLimpiar.Location = new Point(140, 100);
+        btnLimpiar.Size = new Size(100, 30);
+        btnLimpiar.Click += btnLimpiar_Click;
+
+        grilla = new DataGridView();
+        grilla.Location = new Point(20, 150);
+        grilla.Size = new Size(540, 250);
+
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(600, 430);
+        Text = "Formulario";
+
+        Controls.Add(lblNombre);
+        Controls.Add(txtNombre);
+        Controls.Add(lblEdad);
+        Controls.Add(txtEdad);
+        Controls.Add(btnGuardar);
+        Controls.Add(btnLimpiar);
+        Controls.Add(grilla);
+    }
 }
