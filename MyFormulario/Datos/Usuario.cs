@@ -16,5 +16,10 @@ namespace VideoFormulario.Datos
         {
             return listaUsuarios;
         }
+
+        public void Limpiar()
+        {
+            listaUsuarios.Clear();
+        }
     }
 }

@@ -28,7 +28,7 @@ partial class Form1
         lblNombre = new Label();
         lblNombre.Text = "Nombre";
         lblNombre.Location = new Point(20, 20);
-        lblNombre.Size = new Size(60, 23);
+        lblNombre.Size = new Size(75, 23);
 
         txtNombre = new TextBox();
         txtNombre.Location = new Point(100, 20);

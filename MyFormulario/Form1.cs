@@ -30,10 +30,22 @@ namespace VideoFormulario
 
         private void Guardar()
         {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("Escribe un nombre.");
+                return;
+            }
+
+            if (!int.TryParse(txtEdad.Text, out int edad))
+            {
+                MessageBox.Show("La edad debe ser un número.");
+                return;
+            }
+
             UsuarioModel modelo = new UsuarioModel
             {
                 Nombre = txtNombre.Text,
-                Edad = int.Parse(txtEdad.Text)
+                Edad = edad
             };
 
             dato.Guardar(modelo);
@@ -43,18 +55,13 @@ namespace VideoFormulario
             Consultar();
         }
 
-
         private void Consultar()
         {
             foreach (var item in dato.Consultar())
             {
-                DataRow fila = tabla.NewRow();
-                fila["Nombre"] = item.Nombre;
-                fila["Edad"] = item.Edad;
-                tabla.Rows.Add(fila);
+                tabla.Rows.Add(item.Nombre, item.Edad);
             }
         }
-
 
         private void Limpiar()
         {
@@ -72,6 +79,8 @@ namespace VideoFormulario
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
+            dato.Limpiar();
+            Iniciar();
         }
     }
 }
