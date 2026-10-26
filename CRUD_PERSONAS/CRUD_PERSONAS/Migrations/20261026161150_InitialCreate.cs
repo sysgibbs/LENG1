@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CRUD_EF.Migrations
+namespace CRUD_PERSONAS.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -14,16 +14,15 @@ namespace CRUD_EF.Migrations
                 name: "Personas",
                 columns: table => new
                 {
-                    PersonaID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: false),
-                    Apellido = table.Column<string>(type: "TEXT", nullable: false),
-                    Correo = table.Column<string>(type: "TEXT", nullable: false),
-                    Telefono = table.Column<string>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personas", x => x.PersonaID);
+                    table.PrimaryKey("PK_Personas", x => x.Id);
                 });
         }
 
