@@ -6,14 +6,16 @@ namespace Escuela
 {
     class Programa
     {
-        static List<Persona> ListaPersonas = new List<Persona>();
+
         static void Main(string[] args)
         {
+            GestorPersonas gestor = new GestorPersonas();
+
             int opcion = 0;
 
             while (opcion != 5)
             {
-                Console.Clear();
+
                 Console.WriteLine("===== Gestion de Personas | Escuela Santo Domingo =====");
                 Console.WriteLine("1. Estudiante");
                 Console.WriteLine("2. Profesor");
@@ -28,18 +30,19 @@ namespace Escuela
                     switch (opcion)
                     {
                         case 1:
-                            CrearEstudiante();
+                            gestor.CrearEstudiante();
                             break;
                         case 2:
-                            CrearProfesor();
+                            gestor.CrearProfesor();
                             break;
                         case 3:
-                            CrearAdministrativo();
+                            gestor.CrearAdministrativo();
                             break;
                         case 4:
-                            MostrarPersonas();
+                            gestor.MostrarPersonas();
                             break;
                         case 5:
+                            Console.WriteLine("Saliendo...");
                             break;
                         default:
                             Console.WriteLine("Opcion invalida.");
@@ -49,13 +52,16 @@ namespace Escuela
                 }
             }
 
-            Console.WriteLine("Presiona una tecla para continuar...");
-            Console.ReadKey();
+
         }
+    }
 
 
+    public class GestorPersonas
+    {
+        private List<Persona> _lista = new List<Persona>();
 
-        public static void CrearEstudiante()
+        public void CrearEstudiante()
         {
             Console.Write("Ingrese su nombre: ");
             string nombre = Console.ReadLine();
@@ -68,10 +74,12 @@ namespace Escuela
                 Apellido = apellido,
                 Nombre = nombre
             };
-            ListaPersonas.Add(estudiante);
+
+            _lista.Add(estudiante);
+            Console.WriteLine("Perfil de alumno creado.");
         }
 
-        public static void CrearProfesor()
+        public void CrearProfesor()
         {
             Console.Write("Ingrese su nombre: ");
             string nombre = Console.ReadLine();
@@ -82,12 +90,13 @@ namespace Escuela
             Profesor profesor = new Profesor()
             {
                 Apellido = apellido,
-                Nombre = nombre
+                Nombre = nombre,
             };
-            ListaPersonas.Add(profesor);
+            _lista.Add(profesor);
+            Console.WriteLine("Perfil de profesor creado.");
         }
 
-        public static void CrearAdministrativo()
+        public void CrearAdministrativo()
         {
             Console.Write("Ingrese su nombre: ");
             string nombre = Console.ReadLine();
@@ -104,21 +113,26 @@ namespace Escuela
                 Nombre = nombre,
                 Cargo = cargo
             };
-            ListaPersonas.Add(administrativo);
+            _lista.Add(administrativo);
+            Console.WriteLine($"Perfil {cargo} Creado");
         }
 
-        public static void MostrarPersonas()
+        public void MostrarPersonas()
         {
-            foreach (Persona p in ListaPersonas)
+
+            if (_lista.Count == 0)
             {
-                Console.WriteLine(p.Nombre);
-                Console.WriteLine(p.Apellido);
-                Console.WriteLine(p.ObtenerRol());
+                Console.Write("No hay personas registradas");
+                return;
             }
+            foreach (Persona p in _lista)
+            {
+                Console.WriteLine($"Rol: {p.ObtenerRol()} | Nombre: {p.Nombre} {p.Apellido}");
+            }
+            Console.WriteLine("\nPresione una tecla para continuar...");
+            Console.ReadKey();
         }
     }
-
-
     public class Persona
     {
         public int Id { get; set; }
@@ -184,7 +198,7 @@ namespace Escuela
         public string Cargo { get; set; } = string.Empty;
         public override string ObtenerRol()
         {
-            return "Administrativos";
+            return "Administrativo";
         }
     }
 
@@ -198,10 +212,10 @@ namespace Escuela
 
     }
 
-    public class Pagos
+    public class Pago
     {
         public int Id { get; set; }
-        public int EstudianteId { get; set; }
+        public Estudiante Estudiante { get; set; }
         public string Concepto { get; set; } = string.Empty;
         public string Estado { get; set; } = string.Empty;
         public decimal Monto { get; set; }
@@ -211,14 +225,14 @@ namespace Escuela
 
     public class Padre : Persona
     {
-        public List<Estudiante> Hijos = new List<Estudiante>();
+        public List<Estudiante> Hijos { get; set; } = new List<Estudiante>();
 
     }
 
     public class Curso
     {
         public int CursoId { get; set; }
-        public List<Estudiante> Estudiantes = new List<Estudiante>();
-        public List<Asignatura> Asignaturas = new List<Asignatura>();
+        public List<Estudiante> Estudiantes { get; set; } = new List<Estudiante>();
+        public List<Asignatura> Asignaturas { get; set; } = new List<Asignatura>();
     }
 }
