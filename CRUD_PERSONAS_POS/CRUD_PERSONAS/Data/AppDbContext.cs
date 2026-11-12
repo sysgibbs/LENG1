@@ -17,12 +17,8 @@ namespace CRUD_PERSONAS.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Mapear la propiedad 'Role' a la columna 'Role' en la base de datos
-            modelBuilder.Entity<User>()
-                .Property(u => u.Role)
-                .HasColumnName("Role");
 
-            // Configuración de decimales para evitar advertencias
+
             modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);
             modelBuilder.Entity<Invoice>().Property(i => i.SubTotal).HasPrecision(18, 2);
             modelBuilder.Entity<Invoice>().Property(i => i.ItbisAmount).HasPrecision(18, 2);
