@@ -68,15 +68,20 @@ namespace Escuela
     }
     public class GestorPersonas : IGestor
     {
+
         private List<Persona> _lista = new List<Persona>();
 
-        public void CrearEstudiante()
+        private (string nombre, string apellido) PedirNombreYApellido()
         {
             Console.Write("Ingrese su nombre: ");
             string nombre = Console.ReadLine();
-
             Console.Write("Ingrese su apellido: ");
             string apellido = Console.ReadLine();
+            return (nombre, apellido);
+        }
+        public void CrearEstudiante()
+        {
+            var (nombre, apellido) = PedirNombreYApellido();
 
             Estudiante estudiante = new Estudiante()
             {
@@ -90,11 +95,7 @@ namespace Escuela
 
         public void CrearProfesor()
         {
-            Console.Write("Ingrese su nombre: ");
-            string nombre = Console.ReadLine();
-
-            Console.Write("Ingrese su apellido: ");
-            string apellido = Console.ReadLine();
+            var (nombre, apellido) = PedirNombreYApellido();
 
             Profesor profesor = new Profesor()
             {
@@ -107,11 +108,7 @@ namespace Escuela
 
         public void CrearAdministrativo()
         {
-            Console.Write("Ingrese su nombre: ");
-            string nombre = Console.ReadLine();
-
-            Console.Write("Ingrese su apellido: ");
-            string apellido = Console.ReadLine();
+            var (nombre, apellido) = PedirNombreYApellido();
 
             Console.Write("Ingrese su cargo: ");
             string cargo = Console.ReadLine();
@@ -128,13 +125,7 @@ namespace Escuela
 
         public void CrearPadre()
         {
-            Console.Write("Ingrese su nombre: ");
-            string nombre = Console.ReadLine();
-
-            Console.Write("Ingrese su apellido: ");
-            string apellido = Console.ReadLine();
-
-
+            var (nombre, apellido) = PedirNombreYApellido();
 
             Padre padre = new Padre()
             {
@@ -147,7 +138,6 @@ namespace Escuela
 
         public void MostrarPersonas()
         {
-
             if (_lista.Count == 0)
             {
                 Console.Write("No hay personas registradas.\n");
@@ -204,7 +194,6 @@ namespace Escuela
     {
         public double Nota { get; set; }
         public string Literal { get; set; } = string.Empty;
-        public Profesor Profesor { get; set; }
         public Estudiante Estudiante { get; set; }
         public Asignatura Asignatura { get; set; }
 
