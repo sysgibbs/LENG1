@@ -175,7 +175,7 @@ namespace Escuela
         public string Nombre { get; set; } = string.Empty;
         public Profesor Profesor { get; set; }
         public List<Horario> Horarios { get; set; } = new List<Horario>();
-        public List<Calificacion> Calificaciones { get; set; } = new List<Calificacion>();
+        public List<Calificacion> Calificacionesc { get; set; } = new List<Calificacion>();
 
     }
 
