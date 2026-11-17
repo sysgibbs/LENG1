@@ -97,9 +97,11 @@ class Programa
                             Console.WriteLine("Error formato invalido");
                         }
                         break;
+
                     case 2:
                         Console.WriteLine($"Total de compras {RegistroVentas.TotalVentas}");
                         break;
+
                     case 3:
                         Console.WriteLine("\n=== Catalogo ====");
                         for (int i = 0; i < catalogo.Count; i++)
@@ -108,7 +110,7 @@ class Programa
                         }
 
                         Console.Write("Elija el juego (1-5): ");
-                        int juegoElegido = int.Parse(Console.ReadLine());
+                        juegoElegido = int.Parse(Console.ReadLine());
 
                         if (juegoElegido < 1 || juegoElegido > catalogo.Count)
                         {
@@ -119,7 +121,7 @@ class Programa
                         Console.Write("Elija el descuento a aplicar: ");
                         int descuento = int.Parse(Console.ReadLine());
 
-                        Videojuego juegoSeleccionado = catalogo[juegoElegido - 1];
+                        juegoSeleccionado = catalogo[juegoElegido - 1];
 
                         decimal precioConDescuento = juegoSeleccionado.CalcularPrecio(descuento);
                         Console.WriteLine($"El juego {juegoSeleccionado.Nombre} tiene un precio original de ${juegoSeleccionado.Precio:N0}.");
