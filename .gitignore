@@ -1,0 +1,17 @@
+# 1. Ignorar todo por defecto
+*
+
+# 2. Permitir que Git lea carpetas (excepto Practice, bin y obj)
+!**/
+Practice/
+bin/
+obj/
+
+# 3. Permitir los archivos de código y estructura de C# (.NET)
+!**/*.cs
+!**/*.csproj
+!**/*.sln
+
+# 4. Excepciones específicas
+!README.md
+!.gitignore
