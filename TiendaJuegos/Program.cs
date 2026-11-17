@@ -5,15 +5,17 @@ class Programa
 {
     static void Main(string[] args)
     {
-
-
+        // llamamos a la clase Billetera creando un objeto para que funcione en el Main
         Billetera miBilletera = new Billetera();
 
+        // Se ingresa el saldo disponible para la compra
         Console.Write("Ingrese su saldo: ");
+        // Se usa la clase miBilletera con su atributo Dinero para que se guarde
         miBilletera.Dinero = decimal.Parse(Console.ReadLine());
 
-        List<Videojuego> catalogo = new List<Videojuego>();
 
+        // Creamos una lista vacia, luego agregamos los elementos para iterar luego
+        List<Videojuego> catalogo = new List<Videojuego>();
         catalogo.Add(new Videojuego("Dark souls 3", 85));
         catalogo.Add(new Videojuego("Elden Ring", 100));
         catalogo.Add(new Videojuego("Sekiro", 60));
@@ -21,7 +23,6 @@ class Programa
         catalogo.Add(new Videojuego("Bloodborne", 35));
 
         int opcion = 0;
-
 
         do
         {
@@ -39,6 +40,8 @@ class Programa
                 {
                     case 1:
                         Console.WriteLine("\n=== Catalogo ====");
+
+                        // for loop para mostrar el catalogo
                         for (int i = 0; i < catalogo.Count; i++)
                         {
                             Console.WriteLine($"{i + 1}. {catalogo[i].Nombre} ${catalogo[i].Precio:N0}");
@@ -52,21 +55,28 @@ class Programa
                             Console.WriteLine("Error juego invalido");
                             break;
                         }
-
+                        // Se obtiene el juego que el usuario selecciono y se le resta 1 por su indice 0
                         Videojuego juegoSeleccionado = catalogo[juegoElegido - 1];
 
-                        Console.Write("Formato (1. Digital | 2.Fisico): ");
+                        Console.Write("Formato (1. Digital | 2. Fisico): ");
                         int formato = int.Parse(Console.ReadLine());
+
 
                         if (formato == 1)
                         {
+                            // Aqui se crea el objeto de juego digital
                             JuegoDigital digital = new JuegoDigital(juegoSeleccionado.Nombre, juegoSeleccionado.Precio);
 
+                            // Si el dinero disponible es mayor o igual se le resta
                             if (miBilletera.Dinero >= juegoSeleccionado.Precio)
                             {
                                 miBilletera.Dinero -= digital.Precio;
 
-                                RegistroVentas ventas = new RegistroVentas();
+                                // Aqui se llama al metodo para sumar al registro de ventas
+                                RegistroVentas.RegistrarVenta();
+
+                                //! POLIMORFISMO
+                                // Se usa obtenerFormato() para mostrar el formato
                                 Console.WriteLine($"Usted ha comprado {digital.Nombre} en formato {digital.ObtenerFormato()} por ${digital.Precio:N0}.");
                             }
                             else
@@ -82,15 +92,15 @@ class Programa
                             if (miBilletera.Dinero >= juegoSeleccionado.Precio)
                             {
                                 miBilletera.Dinero -= fisico.Precio;
-                                RegistroVentas ventas = new RegistroVentas();
-                                Console.WriteLine($"Usted ha comprado {fisico.Nombre} en formato {fisico.ObtenerFormato()} por {fisico.Precio}.");
+
+                                RegistroVentas.RegistrarVenta();
+
+                                Console.WriteLine($"Usted ha comprado {fisico.Nombre} en formato {fisico.ObtenerFormato()} por ${fisico.Precio:N0}.");
                             }
                             else
                             {
                                 Console.WriteLine("Saldo insuficiente.");
                             }
-
-
                         }
                         else
                         {
@@ -121,16 +131,18 @@ class Programa
                         Console.Write("Elija el descuento a aplicar: ");
                         int descuento = int.Parse(Console.ReadLine());
 
+
                         juegoSeleccionado = catalogo[juegoElegido - 1];
 
                         decimal precioConDescuento = juegoSeleccionado.CalcularPrecio(descuento);
+
                         Console.WriteLine($"El juego {juegoSeleccionado.Nombre} tiene un precio original de ${juegoSeleccionado.Precio:N0}.");
+
                         Console.WriteLine($"Con un descuento de ${descuento}, el precio final es: ${precioConDescuento:N0}.");
                         break;
                     case 4:
                         Console.WriteLine("Saliendo...");
                         break;
-
                 }
 
             }
@@ -182,32 +194,47 @@ public class Videojuego
 }
 
 
+//! HERENCIA
+// Hereda de Videjuego
 public class JuegoFisico : Videojuego
 {
+
+    // Esta vacio por que esta herededando ya los parametros necesarios del atributo
     public JuegoFisico(string nombre, decimal precio) : base(nombre, precio)
-    {
-
-    }
-
+    { }
+    //! POLIMORFISMO
+    // Reemplaza el "Formato Generico" del padre en la clase VideoJuego
     public override string ObtenerFormato() => "Fisico";
-
 }
+
+
+// Hace lo mismo que JuegoFisico
 public class JuegoDigital : Videojuego
 {
-
     public JuegoDigital(string nombre, decimal precio) : base(nombre, precio)
-    {
-
-    }
+    { }
     public override string ObtenerFormato() => "Digital";
 }
 
-public class RegistroVentas
-{
-    public static int TotalVentas = 0;
 
-    public RegistroVentas()
+
+public static class RegistroVentas
+{
+    //! ENCAPSULAMIENTO
+    // Se asigna private para que no pueda cambiarse donde se guarda
+    private static int _totalVentas = 0;
+
+    // Luego usamos el public para poder manipular solo lo que sale el "return,
+    // no se le asigna un set"
+    public static int TotalVentas
     {
-        TotalVentas++;
+        get => _totalVentas;
+    }
+
+    // Usamos un metodo estatico y no un constructor para no tener que instanciar new RegistroVentas()
+    // cada vez, sino llamarlo directo desde la clase RegistroVentas
+    public static void RegistrarVenta()
+    {
+        _totalVentas++;
     }
 }
