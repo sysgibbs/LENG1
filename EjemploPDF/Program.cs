@@ -18,6 +18,14 @@ class Program
         int resultado2 = calculadora.Sumar(3, 3, 3);
         // Console.WriteLine(resultado2);
 
+        Vehiculo vehiculo = new Carro("Toyota");
+        // vehiculo.Arrancar();
+
+        Console.WriteLine($"Total creados: {Contador.TotalCreados}");
+        Contador c1 = new Contador();
+        Contador c2 = new Contador();
+        Contador c3 = new Contador();
+        Console.WriteLine($"Total creados: {Contador.TotalCreados}");
     }
 
 
@@ -93,6 +101,16 @@ public class Carro : Vehiculo
 
     public override void Arrancar()
     {
-        Console.WriteLine($"El carro {_marca} arraca.");
+        Console.WriteLine($"El carro marca {_marca} arraca.");
+    }
+}
+
+public class Contador
+{
+    public static int TotalCreados = 0;
+
+    public Contador()
+    {
+        TotalCreados++;
     }
 }
