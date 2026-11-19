@@ -14,7 +14,7 @@ class Programa
         miBilletera.Dinero = decimal.Parse(Console.ReadLine());
 
 
-        // Creamos una lista vacia, luego agregamos los elementos para iterar luego
+        // Creamos una lista para almacenar el catálogo y la llenamos con los juegos disponibles
         List<Videojuego> catalogo = new List<Videojuego>();
         catalogo.Add(new Videojuego("Dark souls 3", 85));
         catalogo.Add(new Videojuego("Elden Ring", 100));
@@ -195,15 +195,17 @@ public class Videojuego
 
 
 //! HERENCIA
-// Hereda de Videjuego
+// Hereda de Videjuego.
 public class JuegoFisico : Videojuego
 {
 
-    // Esta vacio por que esta herededando ya los parametros necesarios del atributo
+    // El cuerpo está vacío porque el constructor base (:)
+    // se encarga de asignar Nombre y Precio.
     public JuegoFisico(string nombre, decimal precio) : base(nombre, precio)
     { }
+
     //! POLIMORFISMO
-    // Reemplaza el "Formato Generico" del padre en la clase VideoJuego
+    // Sobrescribe el método virtual del padre para devolver "Fisico"
     public override string ObtenerFormato() => "Fisico";
 }
 
@@ -221,18 +223,18 @@ public class JuegoDigital : Videojuego
 public static class RegistroVentas
 {
     //! ENCAPSULAMIENTO
-    // Se asigna private para que no pueda cambiarse donde se guarda
+    // Se declara privado para proteger el contador de modificaciones externas.
     private static int _totalVentas = 0;
 
-    // Luego usamos el public para poder manipular solo lo que sale el "return,
-    // no se le asigna un set"
+    // La propiedad pública solo tiene get,
+    // permitiendo leer el valor pero no asignarlo directamente.
     public static int TotalVentas
     {
         get => _totalVentas;
     }
 
-    // Usamos un metodo estatico y no un constructor para no tener que instanciar new RegistroVentas()
-    // cada vez, sino llamarlo directo desde la clase RegistroVentas
+    // Usamos un método estático para no tener que
+    //  instanciar la clase con 'new' cada vez.
     public static void RegistrarVenta()
     {
         _totalVentas++;
