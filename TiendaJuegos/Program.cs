@@ -1,6 +1,11 @@
 ﻿using System;
 namespace Juegos;
 
+public enum TipoFormato
+{
+    Digital = 1,
+    Fisico = 2
+}
 class Programa
 {
     static void Main(string[] args)
@@ -59,57 +64,47 @@ class Programa
                         Videojuego juegoSeleccionado = catalogo[juegoElegido - 1];
 
                         Console.Write("Formato (1. Digital | 2. Fisico): ");
-                        int formato = int.Parse(Console.ReadLine());
+                        int opcionFormato = int.Parse(Console.ReadLine());
 
+                        //! ENUM: Convertimos el número ingresado al tipo de dato TipoFormato
+                        TipoFormato formato = (TipoFormato)opcionFormato;
 
-                        if (formato == 1)
+                        Videojuego juegoAComprar = null;
+
+                        if (formato == TipoFormato.Digital)
                         {
-                            // Aqui se crea el objeto de juego digital
-                            JuegoDigital digital = new JuegoDigital(juegoSeleccionado.Nombre, juegoSeleccionado.Precio);
-
-                            // Si el dinero disponible es mayor o igual se le resta
-                            if (miBilletera.Dinero >= juegoSeleccionado.Precio)
-                            {
-                                miBilletera.Dinero -= digital.Precio;
-
-                                // Aqui se llama al metodo para sumar al registro de ventas
-                                RegistroVentas.RegistrarVenta();
-
-                                //! POLIMORFISMO
-                                // Se usa obtenerFormato() para mostrar el formato
-                                Console.WriteLine($"Usted ha comprado {digital.Nombre} en formato {digital.ObtenerFormato()} por ${digital.Precio:N0}.");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Saldo insuficiente");
-                            }
-
+                            juegoAComprar = new JuegoDigital(juegoSeleccionado.Nombre, juegoSeleccionado.Precio);
                         }
-                        else if (formato == 2)
+                        else if (formato == TipoFormato.Fisico)
                         {
-                            JuegoFisico fisico = new JuegoFisico(juegoSeleccionado.Nombre, juegoSeleccionado.Precio);
-
-                            if (miBilletera.Dinero >= juegoSeleccionado.Precio)
-                            {
-                                miBilletera.Dinero -= fisico.Precio;
-
-                                RegistroVentas.RegistrarVenta();
-
-                                Console.WriteLine($"Usted ha comprado {fisico.Nombre} en formato {fisico.ObtenerFormato()} por ${fisico.Precio:N0}.");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Saldo insuficiente.");
-                            }
+                            // Aqui se crea el objeto de juego fisico
+                            juegoAComprar = new JuegoFisico(juegoSeleccionado.Nombre, juegoSeleccionado.Precio);
                         }
                         else
                         {
                             Console.WriteLine("Error formato invalido");
+                            break; // Detiene la compra si eligen mal
+                        }
+
+                        // Si el dinero disponible es mayor o igual se le resta
+                        if (miBilletera.Dinero >= juegoAComprar.Precio)
+                        {
+                            miBilletera.Dinero -= juegoAComprar.Precio;
+
+                            // Aqui se llama al metodo para sumar al registro de ventas
+                            RegistroVentas.RegistrarVenta();
+
+                            //! POLIMORFISMO
+                            // Se usa obtenerFormato() para mostrar el formato
+                            Console.WriteLine($"Usted ha comprado {juegoAComprar.Nombre} en formato {juegoAComprar.ObtenerFormato()} por ${juegoAComprar.Precio:N0}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Saldo insuficiente.");
                         }
                         break;
-
                     case 2:
-                        Console.WriteLine($"Total de compras {RegistroVentas.TotalVentas}");
+                        Console.WriteLine($"Total de compras realizadas: {RegistroVentas.TotalVentas}");
                         break;
 
                     case 3:
@@ -187,8 +182,14 @@ public class Videojuego
         Precio = precio;
     }
 
-    public decimal CalcularPrecio() => Precio;
-    public decimal CalcularPrecio(decimal descuento) => Precio - descuento;
+    public decimal CalcularPrecio(decimal descuento)
+    {
+        if (descuento < 0 || descuento >= Precio)
+        {
+            return Precio;
+        }
+        return Precio - descuento;
+    }
     public virtual string ObtenerFormato() => "Formato generico";
 
 }
